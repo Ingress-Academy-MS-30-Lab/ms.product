@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-attribute-value-table
+      author: aydanrahimova
+      changes:
+        - createTable:
+            tableName: product_attribute_value
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attribute_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: product_attribute_value
+            baseColumnNames: product_id
+            referencedTableName: product
+            referencedColumnNames: id
+            constraintName: fk_product_attr_value_product
+
+        - addForeignKeyConstraint:
+            baseTableName: product_attribute_value
+            baseColumnNames: attribute_id
+            referencedTableName: attribute
+            referencedColumnNames: id
+            constraintName: fk_product_attr_value_attribute

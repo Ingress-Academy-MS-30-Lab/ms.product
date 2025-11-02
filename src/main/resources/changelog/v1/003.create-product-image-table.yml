@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-image-table
+      author: aydanrahimova
+      changes:
+        - createTable:
+            tableName: product_image
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_url
+                  type: VARCHAR(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_primary
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+              - column:
+                  name: display_order
+                  type: INT
+
+        - addForeignKeyConstraint:
+            baseTableName: product_image
+            baseColumnNames: product_group_id
+            referencedTableName: product_group
+            referencedColumnNames: id
+            constraintName: fk_product_image_product_group
+
+        - addForeignKeyConstraint:
+            baseTableName: product_image
+            baseColumnNames: product_id
+            referencedTableName: product
+            referencedColumnNames: id
+            constraintName: fk_product_image_product

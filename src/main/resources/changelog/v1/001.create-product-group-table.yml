@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-group-table
+      author: aydanrahimova
+      changes:
+        - createTable:
+            tableName: product_group
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: rating
+                  type: DOUBLE
+              - column:
+                  name: review_count
+                  type: BIGINT
+              - column:
+                  name: category_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_path
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: base_price
+                  type: DECIMAL(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_sponsored
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+              - column:
+                  name: created_by
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by_username
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: approved_by
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_by_username
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false

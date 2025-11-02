@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:/changelog/db.changelog-master.yaml
+    enabled: true
+    drop-first: false
+    default-schema: public
+    liquibase-schema: public
+
+redis:
+  address: redis://localhost:6379
+  password: 2810
+
+product:
+  reservation:
+    max-quantity: 10
+    expires-after-minutes: 15
