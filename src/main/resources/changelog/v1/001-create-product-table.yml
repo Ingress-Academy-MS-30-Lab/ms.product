@@ -1,0 +1,124 @@
+databaseChangeLog:
+  - changeSet:
+      id: product-table
+      author: rahimovaaydan
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: stock_quantity
+                  type: BIGINT
+
+              - column:
+                  name: reserved_quantity
+                  type: BIGINT
+
+              - column:
+                  name: available_quantity
+                  type: BIGINT
+
+              - column:
+                  name: price
+                  type: NUMERIC(19,2)
+
+              - column:
+                  name: sale_price
+                  type: NUMERIC(19,2)
+
+              - column:
+                  name: on_sale
+                  type: BOOLEAN
+
+              - column:
+                  name: in_stock
+                  type: BOOLEAN
+
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+
+              - column:
+                  name: description
+                  type: TEXT
+
+              - column:
+                  name: rating
+                  type: DOUBLE PRECISION
+
+              - column:
+                  name: review_count
+                  type: BIGINT
+
+              - column:
+                  name: category_id
+                  type: BIGINT
+
+              - column:
+                  name: category_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: category_path
+                  type: TEXT
+
+              - column:
+                  name: is_sponsored
+                  type: BOOLEAN
+
+              - column:
+                  name: created_by_id
+                  type: BIGINT
+
+              - column:
+                  name: created_by_username
+                  type: VARCHAR(255)
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: approved_by_id
+                  type: BIGINT
+
+              - column:
+                  name: approved_by_username
+                  type: VARCHAR(255)
+
+              - column:
+                  name: approved_at
+                  type: TIMESTAMP
+
+        - createTable:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_attributes_product
+                    references: product(id)
+              - column:
+                  name: attribute_key
+                  type: VARCHAR(255)
+              - column:
+                  name: attribute_value
+                  type: VARCHAR(255)
+
+        - addPrimaryKey:
+            tableName: product_attributes
+            columnNames: product_id, attribute_key
+            constraintName: pk_product_attributes

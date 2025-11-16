@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: product-reservation-table
+      author: rahimovaaydan
+      changes:
+        - createTable:
+            tableName: product_reservation
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: reservation_id
+                  type: VARCHAR(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_reservation_reservation
+                    references: reservation(uuid)
+
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_reservation_product
+                    references: product(id)
+
+              - column:
+                  name: quantity
+                  type: BIGINT
+                  constraints:
+                    nullable: false
