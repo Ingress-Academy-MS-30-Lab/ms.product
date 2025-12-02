@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: reservation-table
+      author: rahimovaaydan
+      changes:
+        - createTable:
+            tableName: reservation
+            columns:
+              - column:
+                  name: uuid
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: order_id
+                  type: BIGINT
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+              - column:
+                  name: reserved_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: expires_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: reservation_status
+                  type: VARCHAR(50)
+
+              - column:
+                  name: order_status
+                  type: VARCHAR(50)
